@@ -1,13 +1,18 @@
 import React from 'react'
-import TextField from '@mui/material/TextField';
+import {TextField, Button} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 
 function SignIn() {
   return (
     <>
-    <h1>Sign In</h1>
        <LockIcon />
-       <TextField id="outlined-basic" label="Outlined" variant="outlined"/>
+       <h3>Sign In</h3>
+     
+       <TextField type='email' variant="outlined"  label="Email Address*"/>
+     <br/><br/>
+       <TextField type='password'  variant="outlined" label="Password*"/>
+     <br/><br/>
+     <Button variant="contained">Sign In</Button>
     </>
   )
 }
