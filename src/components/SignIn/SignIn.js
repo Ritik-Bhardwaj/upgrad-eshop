@@ -5,9 +5,10 @@ import LockIcon from '@mui/icons-material/Lock';
 function SignIn() {
   return (
     <>
+    
+
        <LockIcon />
-       <h3>Sign In</h3>
-     
+       <h3>Sign In</h3>     
        <TextField type='email' variant="outlined"  label="Email Address*"/>
      <br/><br/>
        <TextField type='password'  variant="outlined" label="Password*"/>
