@@ -13,17 +13,23 @@ function Home() {
 
 
 
+
+  
+
   return (
-    <div>
+    <>
+    
            {data.map(item => (
-                <table>    
-                <tr key={item.id}><img src={item.image} style ={{height:100}} alt={item.image}/></tr>
+                <table key={item.id}>   
+                <tr>Category{item.category}</tr> 
+                <tr><img src={item.image} style ={{height:100}} alt={item.image}/></tr>
                 <tr>Title: {item.title}</tr>
-                <tr>Price: {item.price} &#8377; </tr>          
+                <tr>Price: {item.price} $</tr>   
+                <tr>{item.description}</tr>       
      </table>
         ))}
       
-    </div>
+    </>
   )
 }
 
