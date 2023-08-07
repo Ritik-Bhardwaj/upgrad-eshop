@@ -9,10 +9,11 @@ function NavigationBar() {
   );
   return (
     <>
-    <AppBar>
+    <AppBar position='static'>
         <Toolbar>
         <ShoppingCartIcon />
             <Typography variant='body1'>UpGrad E-Shop </Typography>
+            
             <Button variant='contained' onClick={()=> navigate("/signin")}>Login</Button>
             <Button variant='contained' onClick={()=> navigate("/signup")}>Sign Up</Button>
         </Toolbar>
