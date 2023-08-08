@@ -5,7 +5,7 @@ function AddProduct() {
     <>
     <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }} spacing={2}>
       <Grid item>
-      <h4>Add Address</h4>
+      <h4>Add Product</h4>
       </Grid>
 
       <Grid item>
