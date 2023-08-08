@@ -6,8 +6,9 @@ import { pink } from '@mui/material/colors';
 
 function SignUp() {
   return (
-    <div>
-       <Grid container direction="column" justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }} spacing={2}>
+    <>
+    <form>
+    <Grid container direction="column" justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }} spacing={2}>
   <Grid item>
   <Avatar sx={{ bgcolor: pink[500], color:'white' }}> 
   <LockIcon  />
@@ -43,10 +44,12 @@ function SignUp() {
   </Grid>
 
   <Grid item>
-  <Button variant="contained" sx={{ width: 400, backgroundColor:'#3f51b5' }}>Sign Up</Button>
+  <Button type="submit" variant="contained" sx={{ width: 400, backgroundColor:'#3f51b5' }}>Sign Up</Button>
   </Grid>
 </Grid>
-    </div>
+    </form>
+      
+    </>
   )
 }
 
