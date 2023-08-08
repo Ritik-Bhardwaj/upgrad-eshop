@@ -19,7 +19,7 @@ function NavigationBar() {
             <Button variant='contained' onClick={()=> navigate("/signup")}>Sign Up</Button>
             <Button variant='contained' onClick={()=> navigate("/")}>Home</Button>
             <Button variant='contained' onClick={()=> navigate("/addproduct")}>Add Product</Button>
-            <Button variant='contained' onClick={()=> navigate("/signin")}>Logout</Button>
+            <Button variant='contained' onClick={()=> navigate("")}>Logout</Button>
             </Stack>            
         </Toolbar>
     </AppBar>

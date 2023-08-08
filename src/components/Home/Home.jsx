@@ -1,7 +1,7 @@
 import React from 'react'
 import { useEffect, useState } from "react";
-import { CardContent, ToggleButton, ToggleButtonGroup } from '@mui/material';
-import { Card, CardActionArea, CardActions, CardMedia } from '@mui/material';
+import { Grid, ToggleButton, ToggleButtonGroup } from '@mui/material';
+import ProductCard from '../ProductCard/ProductCard';
 
 
 function Home() {
@@ -34,42 +34,61 @@ function Home() {
   exclusive
   onChange={handleChange}
   aria-label="Platform"
->  
+  >  
     <ToggleButton className='btn'  value="all">All</ToggleButton>
     <ToggleButton className='btn' value="apparel">Apparel</ToggleButton>
     <ToggleButton className='btn' value="electronics">Electronics</ToggleButton>
     <ToggleButton className='btn'  value="personal_care">Personal Care</ToggleButton>
    </ToggleButtonGroup>
 
-    <>
+  <Grid container direction="row" justifyContent="space-evenly">
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+
+    <Grid item>
+   <ProductCard />
+    </Grid>
+    
+  </Grid>
+
            {data.map(item => (
-                <table key={item.id}>   
-     </table>
-        ))}
-    <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"  />
-         {/* <img src={item.image} style ={{height:100}} alt={item.image}/> */}
-        <CardContent>
+      <table key={item.id}>   
+         <tr><img src={item.image} style ={{height:100}} alt={item.image}/></tr>
         <tr>Title: {item.title}</tr>
         <tr>Price: {item.price} $</tr>          
-        </CardContent>
-
-        <CardContent>
         <tr>{item.description}</tr>       
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" variant='contained' color="primary">
-          Buy
-        </Button>
-      </CardActions>
-    </Card>
+     </table>
+        ))}; 
 
-      
-    </>
     </>
   )
 }
