@@ -10,7 +10,6 @@ import AddProduct from './components/Addmin/addProduct/AddProduct';
 function App() {
 
   return (
-    
     <>
     <BrowserRouter>    
     <NavigationBar />
