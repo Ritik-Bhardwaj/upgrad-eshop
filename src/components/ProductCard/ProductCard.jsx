@@ -4,8 +4,9 @@ import { styled } from "@mui/material/styles";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-
+import { useNavigate } from 'react-router-dom';
  function ProductCard(props) {
+  const modifyProduct = useNavigate()
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
@@ -44,8 +45,9 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
         <Button variant="contained">BUY</Button>
         <CardActions disableSpacing>
           <IconButton>
-            <EditIcon />
+            <EditIcon onClick={() => modifyProduct("/modifyproduct")}/>
           </IconButton>
+
           <IconButton>
             <DeleteIcon />
           </IconButton>

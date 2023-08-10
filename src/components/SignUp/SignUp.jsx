@@ -2,6 +2,8 @@ import React from 'react'
 import {TextField, Button, Grid, Avatar} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { pink } from '@mui/material/colors';
+import { Link } from 'react-router-dom';
+
 
 
 function SignUp() {
@@ -46,7 +48,12 @@ function SignUp() {
   <Grid item>
   <Button type="submit" variant="contained" sx={{ width: 400, backgroundColor:'#3f51b5' }}>Sign Up</Button>
   </Grid>
-</Grid>
+  <Grid item sx={{ textAlign: 'right', width: 400 }}>
+          <Link to="/login">
+            <span>Already have an account? Sign in</span>
+          </Link>
+        </Grid></Grid>
+
     </form>
       
     </>

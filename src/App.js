@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import './App.css';
 import NavigationBar from './common/NavigationBar/NavigationBar';
 import SignIn from './components/SignIn/SignIn';
 import SignUp from './components/SignUp/SignUp';
@@ -13,20 +11,20 @@ function App() {
 
   return (
     
-    <div>
+    <>
     <BrowserRouter>    
-     <NavigationBar />
-     <ModifyProduct />
-     <AddProduct />
+    <NavigationBar />
        <Routes>
-       <Route path='/signin' element ={<SignIn />} />
-       <Route path='/signup' element ={<SignUp />} />
-       <Route path='/placeorder' element ={<PlaceOrder />} />   
-       <Route path='/product' element ={<ProductCard />} />
-       <Route path='/' exact          element ={<Home />} />
+       <Route exact path='/login' element ={<SignIn />} />
+       <Route exact path='/signup' element ={<SignUp />} />
+       <Route exact path='/placeorder' element ={<PlaceOrder />} /> 
+       <Route exact path='/product' element ={<ProductCard />} />
+       <Route exact path='/products' element ={<Home />} />
+       <Route exact path='/modifyproduct' element ={<ModifyProduct />} />
+       <Route exact path='/addproduct' element ={<AddProduct />} />
      </Routes>
      </BrowserRouter>
-    </div>
+    </>
   );
 }
 
