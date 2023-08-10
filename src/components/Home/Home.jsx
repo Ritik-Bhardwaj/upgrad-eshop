@@ -19,7 +19,10 @@ function Home() {
    function getProduct(){
     fetch("https://fakestoreapi.com/products")
     .then(response => response.json())
-    .then(data => setData(data));
+    .then(data => {
+      setData(data)
+      console.log(data);
+    });
    }
 
   useEffect(() => {
@@ -41,53 +44,25 @@ function Home() {
     <ToggleButton className='btn'  value="personal_care">Personal Care</ToggleButton>
    </ToggleButtonGroup>
 
-  <Grid container direction="row" justifyContent="space-evenly">
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-
-    <Grid item>
-   <ProductCard />
-    </Grid>
-    
+  <Grid  container direction="row" justifyContent="space-evenly">
+    {data.map((item ) =>{
+      return(
+        <Grid item key={item.id}>
+        <ProductCard value={item}/>
+         </Grid>
+      )
+    })}
+      
   </Grid>
 
-           {data.map(item => (
+           {/* {data.map(item => (
       <table key={item.id}>   
          <tr><img src={item.image} style ={{height:100}} alt={item.image}/></tr>
         <tr>Title: {item.title}</tr>
         <tr>Price: {item.price} $</tr>          
         <tr>{item.description}</tr>       
      </table>
-        ))}; 
+        ))};  */}
 
     </>
   )

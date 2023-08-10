@@ -8,6 +8,7 @@ import ProductCard from './components/ProductCard/ProductCard';
 import PlaceOrder from './components/PlaceOrder/PlaceOrder';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ModifyProduct from './components/Addmin/modifyProduct/ModifyProduct';
+import AddProduct from './components/Addmin/addProduct/AddProduct';
 function App() {
 
   return (
@@ -15,6 +16,8 @@ function App() {
     <div>
     <BrowserRouter>    
      <NavigationBar />
+     <ModifyProduct />
+     <AddProduct />
        <Routes>
        <Route path='/signin' element ={<SignIn />} />
        <Route path='/signup' element ={<SignUp />} />

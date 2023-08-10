@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Grid, TextField, Button } from '@mui/material';
 function ModifyProduct() {
   return (
     <>
@@ -40,11 +40,10 @@ function ModifyProduct() {
       <Button variant="contained" sx={{ width: 400, backgroundColor:'#3f51b5' }}>Modify Product</Button>       
       </Grid>
 
-          
 
        </Grid>
     </>
   )
 }
 
-export default ModifyProduct
+export default ModifyProduct;

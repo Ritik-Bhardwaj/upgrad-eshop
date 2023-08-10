@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Grid, TextField, Button } from '@mui/material';
 function AddProduct() {
   return (
     <>
@@ -42,4 +42,4 @@ function AddProduct() {
   )
 }
 
-export default AddProduct
+export default AddProduct;

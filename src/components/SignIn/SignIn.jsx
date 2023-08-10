@@ -1,4 +1,3 @@
-import React from 'react'
 import {TextField, Button, Grid, Avatar} from '@mui/material';
 import LockIcon from '@mui/icons-material/Lock';
 import { pink } from '@mui/material/colors';
@@ -9,7 +8,7 @@ function SignIn() {
     event.preventDefault();
     console.log('Checking......');
    }
-
+      
   return (
 
     <>
@@ -27,11 +26,11 @@ function SignIn() {
      </Grid>
 
      <Grid item>
-     <TextField sx={{ width: 400 }} type='email' variant="outlined"  label="Email Address*"/>   
+     <TextField id='email' sx={{ width: 400 }} type='email' variant="outlined"  label="Email Address*"/>   
      </Grid>
 
      <Grid item>
-     <TextField sx={{ width: 400 }} type='password'  variant="outlined" label="Password*"/> 
+     <TextField  id='pass' sx={{ width: 400 }} type='password'  variant="outlined" label="Password*"/> 
      </Grid>
 
      <Grid item>

@@ -5,14 +5,15 @@ import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 
- function ProductCard() {
+ function ProductCard(props) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
-        height="194"
-        image="/static/images/cards/paella.jpg"
-        alt="Paella dish"
+        height="200"
+        image={props.value.image}
+        alt="image is not loaded"
+        style={{objectFit:"contain"}}
       />
       <CardContent>
         <Stack
@@ -21,16 +22,16 @@ import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
           alignItems="center"
           spacing={2}
         >
-          <Typography> Shoes </Typography>
+          <Typography>{props.value.title} </Typography>
+    
           <Typography>
-            <CurrencyRupeeIcon /> 1000{" "}
+            <CurrencyRupeeIcon /> {props.value.price}
           </Typography>
         </Stack>
 
-        <Typography variant="body2" color="text.secondary">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+        <Typography variant="body2" color="text.secondary" 
+        style={{height:100, overflow:"hidden"}} >
+           {props.value.description}
         </Typography>
       </CardContent>
 
