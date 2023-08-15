@@ -14,20 +14,21 @@ function SignIn() {
 
     <>
     <form onSubmit={handleClick}>
-    <Grid container direction="column" alignItems="center" justifyContent="center" style={{ minHeight: '100vh' }} spacing={2}>
+    <Grid container direction="column" alignItems="center" justifyContent="center" spacing={2}>
     
     <Grid item>
     <Avatar sx={{ bgcolor: pink[500], color:'white' }}>
     <LockIcon /> 
     </Avatar>
+
      </Grid>
 
      <Grid item>
      <h3>Sign In</h3> 
      </Grid>
 
-     <Grid item>
-     <TextField id='email' sx={{ width: 400 }} type='email' variant="outlined"  label="Email Address*"/>   
+     <Grid item sx={12}>
+     <TextField id='email'type='email' variant="outlined"  label="Email Address*"/>   
      </Grid>
 
      <Grid item>

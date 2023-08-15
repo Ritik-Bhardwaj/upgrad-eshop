@@ -55,15 +55,6 @@ function Home() {
       
   </Grid>
 
-           {/* {data.map(item => (
-      <table key={item.id}>   
-         <tr><img src={item.image} style ={{height:100}} alt={item.image}/></tr>
-        <tr>Title: {item.title}</tr>
-        <tr>Price: {item.price} $</tr>          
-        <tr>{item.description}</tr>       
-     </table>
-        ))};  */}
-
     </>
   )
 }
