@@ -12,12 +12,16 @@ const Search = styled('div')(({ theme }) => ({
   '&:hover': {
     backgroundColor: 'rgba(255, 255, 255, 0.25)', 
   },
-  marginLeft: 0,
-  width: '100%',
-  ['@media (min-width:600px)']: { 
-    marginLeft: '16px', 
-    width: 'auto',
-  },
+
+}));
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
@@ -47,10 +51,18 @@ function NavigationBar() {
             <Typography variant="body1">UpGrad E-Shop</Typography>
           </Box>
         </Stack>
-        <Search>
-        <SearchIcon style={{ margin: '8px' }} />
-        <StyledInputBase placeholder="Search…" inputProps={{ 'aria-label': 'search' }} />
-      </Search>
+
+
+        <Search sx={{ alignItems: "center", justifyContent: "center",flex: 0.7}}>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </Search> 
+
 
       <Box style={{ justifyContent: 'flex-end' }}>
         <Stack direction="row" spacing={2}>

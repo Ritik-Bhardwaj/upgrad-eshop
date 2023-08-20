@@ -14,7 +14,7 @@ function SignIn() {
 
     <>
     <form onSubmit={handleClick}>
-    <Grid container direction="column" alignItems="center" justifyContent="center" spacing={2}>
+    <Grid container  direction="column" alignItems="center" justifyContent="center" mt={15} spacing={2}>
     
     <Grid item>
     <Avatar sx={{ bgcolor: pink[500], color:'white' }}>
@@ -27,8 +27,8 @@ function SignIn() {
      <h3>Sign In</h3> 
      </Grid>
 
-     <Grid item sx={12}>
-     <TextField id='email'type='email' variant="outlined"  label="Email Address*"/>   
+     <Grid item>
+     <TextField id='email'type='email' sx={{ width: 400 }} variant="outlined"  label="Email Address*"/>   
      </Grid>
 
      <Grid item>
