@@ -10,7 +10,7 @@ import React from "react";
 //MUI Components
 import MuiButtonSignIn from "../../common/MuiComponents/Buttons/MuiButtonSignIn";
 import MuiTextLogin from "../../common/MuiComponents/TextField/MuiTextLogin";
-import "./LogIn.css";
+import "./SignIn.css";
 
 //Toasts
 import { ErrorToast } from "../../common/Toasts/Toasts";
