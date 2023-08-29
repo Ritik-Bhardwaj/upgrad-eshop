@@ -1,61 +1,105 @@
-import React from 'react';
-import { Button, CardActions, Card, CardMedia, CardContent, Stack,Typography,IconButton } from '@mui/material';
-import { styled } from "@mui/material/styles";
-import EditIcon from "@mui/icons-material/Edit";
+import {Card,
+  CardActions,
+  CardContent,
+  CardMedia,
+  Grid,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
-import { useNavigate } from 'react-router-dom';
+import EditIcon from "@mui/icons-material/Edit";
+import { useState } from "react";
 
+import "./ProductCard.css";
 
- function ProductCard(props) {
-  const modifyProduct = useNavigate()
+//MUI Components
+import MuiButtonBuyProduct from "../../common/MuiComponents/Buttons/MuiButtonBuyProduct";
+import MuiConfirmDialog from "../../common/MuiComponents/Dialog/MuiConfirmDialog";
+
+function ProductCard(props) {
+  const { productData, isAdmin, handleDeleteCall, navigate } = props;
+  const key = props.productData.id;
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  const handleDeleteWithConfirmation = () => {
+    handleOpenDialog();
+  };
+
+  const handleConfirmDelete = () => {
+    handleDeleteCall(); // Perform actual delete action
+    handleCloseDialog();
+  };
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        component="img"
-        height="200"
-        image={props.value.image}
-        alt="image is not loaded"
-        style={{objectFit:"contain"}}
-      />
-      <CardContent>
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          spacing={2}
-        >
-          <Typography>{props.value.title} </Typography>
-    
-          <Typography>
-            <CurrencyRupeeIcon /> {props.value.price}
+    <Grid key={key} item xs={4}>
+      <Card>
+        <CardMedia
+          sx={{ height: 150 }}
+          image={
+            productData.imageUrl.length > 0
+              ? productData.imageUrl
+              : "https://via.placeholder.com/600/771796"
+          }
+          title={productData.name}
+        />
+        <CardContent sx={{ height: 150 }}>
+          <div className=".card-content">
+            <Typography gutterBottom variant="h5" component="div">
+              {productData.name}
+            </Typography>
+            <Typography gutterBottom variant="h5" component="div">
+              ₹{productData.price}
+            </Typography>
+          </div>
+          <Typography variant="body2" color="text.secondary">
+            {productData.description}
           </Typography>
-        </Stack>
-
-        <Typography variant="body2" color="text.secondary" 
-        style={{height:100, overflow:"hidden"}} >
-           {props.value.description}
-        </Typography>
-      </CardContent>
-
-      <Stack
-        direction="row"
-        justifyContent="space-between"
-        alignItems="center"
-        spacing={2}
-      >
-        <Button variant="contained">BUY</Button>
-        <CardActions disableSpacing>
-          <IconButton>
-            <EditIcon onClick={() => modifyProduct("/modifyproduct")}/>
-          </IconButton>
-
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
+        </CardContent>
+        <CardActions
+          sx={{
+            alignSelf: "stretch",
+            display: "flex",
+            justifyContent: isAdmin ? "space-between" : "flex-start",
+            margin: "0 10px",
+          }}
+        >
+          <div>
+            <MuiButtonBuyProduct
+              onClick={() => navigate(`/products/${productData.id}`)}
+              value="Buy"
+            />
+          </div>
+          {isAdmin && (
+            <div>
+              <IconButton onClick={handleDeleteWithConfirmation}>
+                <DeleteIcon />
+              </IconButton>
+              <MuiConfirmDialog
+                open={openDialog}
+                onClose={handleCloseDialog}
+                onConfirm={handleConfirmDelete}
+                title="Confirm Delete"
+                content="Are you sure you want to delete this product?"
+              />
+              <IconButton
+                onClick={() => navigate(`/edit-product/${productData.id}`)}
+              >
+                <EditIcon />
+              </IconButton>
+            </div>
+          )}
         </CardActions>
-      </Stack>
-    </Card>
+      </Card>
+    </Grid>
   );
 }
+
 export default ProductCard;
