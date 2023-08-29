@@ -37,8 +37,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-function NavigationBar() {
+function NavigationBar({setIsLogined, isLogined}) {
   const navigate = useNavigate();
+  const handleLogOut= () =>{
+    setIsLogined(true)
+    navigate("/login");
+  }
 
   return (
     <AppBar position="static" style={{ backgroundColor: '#3f51b5' }}>
@@ -66,21 +70,32 @@ function NavigationBar() {
 
       <Box style={{ justifyContent: 'flex-end' }}>
         <Stack direction="row" spacing={2}>
-          <Button variant="contained" onClick={() => navigate('/login')}>
+          {
+            isLogined && 
+            <>
+            <Button variant="contained" onClick={() => navigate('/login')}>
             Login
           </Button>
           <Button variant="contained" onClick={() => navigate('/signup')}>
             Sign Up
           </Button>
-          <Button variant="contained" onClick={() => navigate('/')}>
+          </>
+          }
+          {
+            !isLogined && 
+            <>
+            <Button variant="contained" onClick={() => navigate('/')}>
             Home
           </Button>
           <Button variant="contained" onClick={() => navigate('/addproduct')}>
             Add Product
           </Button>
-          <Button variant="contained" onClick={() => navigate('')}>
+          <Button variant="contained" onClick={handleLogOut} >
             Logout
           </Button>
+            </>
+          }
+          
         </Stack>
       </Box>
 

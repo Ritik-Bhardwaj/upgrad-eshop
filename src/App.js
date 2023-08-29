@@ -7,14 +7,17 @@ import PlaceOrder from './components/PlaceOrder/PlaceOrder';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ModifyProduct from './components/Addmin/modifyProduct/ModifyProduct';
 import AddProduct from './components/Addmin/addProduct/AddProduct';
+import { useState } from 'react';
+
 function App() {
+  const [isLogined,setIsLogined] = useState(true);
 
   return (
     <>
     <BrowserRouter>    
-    <NavigationBar />
+    <NavigationBar isLogined={isLogined} setIsLogined ={setIsLogined}/>
        <Routes>
-       <Route exact path='/login' element ={<SignIn />} />
+       <Route exact path='/login' element ={<SignIn  setIsLogined ={setIsLogined}/>} />
        <Route exact path='/signup' element ={<SignUp />} />
        <Route exact path='/placeorder' element ={<PlaceOrder />} /> 
        <Route exact path='/product' element ={<ProductCard />} />
