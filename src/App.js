@@ -1,32 +1,43 @@
-import NavigationBar from './common/NavigationBar/NavigationBar';
-import SignIn from './components/SignIn/SignIn';
-import SignUp from './components/SignUp/SignUp';
-import Home from './components/HomePage/Home';
-import ProductCard from './components/ProductCard/ProductCard';
-import PlaceOrder from './components/PlaceOrder/PlaceOrder';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import ModifyProduct from './components/Addmin/modifyProduct/ModifyProduct';
-import AddProduct from './components/Addmin/addProduct/AddProduct';
-import { useState } from 'react';
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material";
+import { AuthContextProvider } from "./common/authContext/AuthContext";
+import ProductDetail from "./components/ProductDetails/ProductDetails";
+import Products from "./components/ProductsPage/Products";
+import LogIn from "./components/SignIn/SignIn";
+import SignUp from "../src/components/SignUp/SignUp";
+import AddModifyProduct from "./components/addProduct/AddModifyProduct";
+import Orders from "../src/components/Orders/Orders";
+
+const appTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#3f51b5",
+    },
+    secondary: {
+      main: "#f44336",
+    },
+  },
+});
 
 function App() {
-  const [isLogined,setIsLogined] = useState(true);
-
   return (
-    <>
-    <BrowserRouter>    
-    <NavigationBar isLogined={isLogined} setIsLogined ={setIsLogined}/>
-       <Routes>
-       <Route exact path='/login' element ={<SignIn  setIsLogined ={setIsLogined}/>} />
-       <Route exact path='/signup' element ={<SignUp />} />
-       <Route exact path='/placeorder' element ={<PlaceOrder />} /> 
-       <Route exact path='/product' element ={<ProductCard />} />
-       <Route exact path='/' element ={<Home />} />
-       <Route exact path='/modifyproduct' element ={<ModifyProduct />} />
-       <Route exact path='/addproduct' element ={<AddProduct />} />
-     </Routes>
-     </BrowserRouter>
-    </>
+    <AuthContextProvider>
+      <ThemeProvider theme={appTheme}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/edit-product/:id" element={<AddModifyProduct />} />
+            <Route path="/add-product" element={<AddEditProduct />} />
+            <Route path="/login" element={<LogIn />} />
+            <Route path="/products/:id" element={<ProductDetail />} />
+            <Route exact path="/products" element={<Products />} />
+            <Route exact path="/" element={<Navigate to="/login" />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/order" element={<Orders />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </AuthContextProvider>
   );
 }
 
