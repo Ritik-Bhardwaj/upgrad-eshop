@@ -13,7 +13,7 @@ import {
 
 import ProductCard from "../ProductCard/ProductCard";
 import axios from "axios";
-import { AuthContext } from "../../common/Auth/AuthContext";
+import { AuthContext } from "../../common/authContext/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 //Toasts

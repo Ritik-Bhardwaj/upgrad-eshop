@@ -1,7 +1,6 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import Select from "react-select";
-import { AuthContext } from "../../common/Auth/AuthContext";
-
+import { AuthContext } from "../../common/authContext/AuthContext";
 import {
   Box,
   Button,

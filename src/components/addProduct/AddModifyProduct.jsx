@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import CreatableSelect from "react-select/creatable";
-import { AuthContext } from "../../common/Auth/AuthContext";
+import { AuthContext } from "../../common/authContext/AuthContext";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { Box, CircularProgress, TextField, Typography } from "@mui/material";

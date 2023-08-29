@@ -3,7 +3,7 @@ import { Avatar, Typography } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { AuthContext } from "../../common/Auth/AuthContext";
+import { AuthContext } from "../../common/authContext/AuthContext";
 import NavigationBar from "../../common/NavBar/NavBar";
 import React from "react";
 

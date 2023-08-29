@@ -1,107 +1,89 @@
-import React from 'react';
-import { AppBar, Typography, Toolbar, Button, Stack, IconButton, InputBase, Box } from '@mui/material';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import SearchIcon from '@mui/icons-material/Search';
-import { useNavigate } from 'react-router-dom';
-import { alpha, styled } from '@mui/system';
+import { useContext } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 
-const Search = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: '4px', 
-  backgroundColor: 'rgba(255, 255, 255, 0.15)', 
-  '&:hover': {
-    backgroundColor: 'rgba(255, 255, 255, 0.25)', 
-  },
+import { Grid } from "@mui/material";
+import SearchInput from "../../components/search/Search";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../common/Auth/AuthContext";
+import React from "react";
 
-}));
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+//MUI Components
+import MuiButtonNavBarLoggedIn from "../MuiComponents/Buttons/MuiButtonNavBarLoggedIn";
+import MuiNavBarButtonLogout from "../MuiComponents/Buttons/MuiButtonNavBarLogout";
+import MuiIconButton from "../MuiComponents/IconButton/MuiIconButton";
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: '8px 8px 8px 0', 
-    paddingLeft: 'calc(1em + 32px)', 
-    transition: 'width 200ms ease', 
-    width: '100%',
-    ['@media (min-width:960px)']: { 
-      width: '160px', 
-    },
-  },
-}));
-
-function NavigationBar({setIsLogined, isLogined}) {
+function NavigationBar(props) {
+  const { isLogged, isAdmin, searchTerm, onSearchChange } = props;
+  const { setToken, setUserId, setIsAdmin } = useContext(AuthContext);
   const navigate = useNavigate();
-  const handleLogOut= () =>{
-    setIsLogined(true)
+
+  const handleLogout = () => {
+    setToken(null);
+    setUserId(null);
+    setIsAdmin(false);
     navigate("/login");
-  }
+  };
 
   return (
-    <AppBar position="static" style={{ backgroundColor: '#3f51b5' }}>
-      <Toolbar style={{ justifyContent: 'space-between' }}>
-        <Stack direction="row" spacing={2} style={{ flex: 1 }}>
-          <Box style={{ display: 'flex', alignItems: 'center' }}>
-            <IconButton color="inherit" aria-label="open drawer">
-              <ShoppingCartIcon />
-            </IconButton>
-            <Typography variant="body1">UpGrad E-Shop</Typography>
-          </Box>
-        </Stack>
-
-
-        <Search sx={{ alignItems: "center", justifyContent: "center",flex: 0.7}}>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
+    <AppBar position="static" className="app-primary-color">
+      <Toolbar>
+        <Grid container spacing={2}>
+          <Grid item xs={5}>
+            <MuiIconButton
+              onClick={() => navigate(isLogged ? "/products" : "/login")}
             />
-          </Search> 
-
-
-      <Box style={{ justifyContent: 'flex-end' }}>
-        <Stack direction="row" spacing={2}>
-          {
-            isLogined && 
-            <>
-            <Button variant="contained" onClick={() => navigate('/login')}>
-            Login
-          </Button>
-          <Button variant="contained" onClick={() => navigate('/signup')}>
-            Sign Up
-          </Button>
-          </>
-          }
-          {
-            !isLogined && 
-            <>
-            <Button variant="contained" onClick={() => navigate('/')}>
-            Home
-          </Button>
-          <Button variant="contained" onClick={() => navigate('/addproduct')}>
-            Add Product
-          </Button>
-          <Button variant="contained" onClick={handleLogOut} >
-            Logout
-          </Button>
-            </>
-          }
-          
-        </Stack>
-      </Box>
-
+          </Grid>
+          <Grid item xs={3}>
+            <SearchInput
+              searchText={searchTerm}
+              onSearchChange={onSearchChange}
+            />
+          </Grid>
+          <Grid item xs={4} textAlign={"right"} justifyContent="flex-end">
+            {isLogged ? (
+              isAdmin ? (
+                <div>
+                  <MuiButtonNavBarLoggedIn
+                    onClick={() => navigate(isLogged ? "/products" : "/login")}
+                    value="Home"
+                  />
+                  <MuiButtonNavBarLoggedIn
+                    onClick={() => navigate("/add-product")}
+                    value="Add Product"
+                  />
+                  <MuiNavBarButtonLogout
+                    onClick={handleLogout}
+                    value="Logout"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <MuiButtonNavBarLoggedIn
+                    onClick={() => navigate(isLogged ? "/products" : "/login")}
+                    value="Home"
+                  />
+                  <MuiNavBarButtonLogout
+                    onClick={handleLogout}
+                    value="Logout"
+                  />
+                </div>
+              )
+            ) : (
+              <div>
+                <MuiButtonNavBarLoggedIn
+                  onClick={() => navigate("/login")}
+                  value="Login"
+                />
+                <MuiButtonNavBarLoggedIn
+                  onClick={() => navigate("/signup")}
+                  value="Sign Up"
+                />
+              </div>
+            )}
+          </Grid>
+        </Grid>
       </Toolbar>
-
-   
     </AppBar>
   );
 }

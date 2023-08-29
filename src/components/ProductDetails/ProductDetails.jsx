@@ -1,5 +1,5 @@
 import { Fragment, useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../common/Auth/AuthContext";
+import { AuthContext } from "../../common/authContext/AuthContext";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import {
   Chip,
