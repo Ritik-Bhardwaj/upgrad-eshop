@@ -1,63 +1,148 @@
-import React from 'react'
-import {TextField, Button, Grid, Avatar} from '@mui/material';
-import LockIcon from '@mui/icons-material/Lock';
-import { pink } from '@mui/material/colors';
-import { Link } from 'react-router-dom';
+import { Avatar, Typography } from "@mui/material";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import LockIcon from "@mui/icons-material/Lock";
+import axios from "axios";
+import NavigationBar from "../../common/NavBar/NavBar";
 
+//Custom MUI
+import MuiButtonSubmitButton from "../../common/MuiComponents/Buttons/MuiButtonSubmitButton";
+import MuiTextSignup from "../../common/MuiComponents/TextField/MuiTextSignup";
 
+//Toasts
+import { SuccessToast, ErrorToast } from "../../common/Toasts/Toasts";
 
-function SignUp() {
+import "./SignUp.css";
+
+function Signup() {
+  const navigate = useNavigate();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [contactNumber, setContactNumber] = useState("");
+
+  const [firstNameError, setFirstNameError] = useState(false);
+  const [lastNameError, setLastNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [contactNumberError, setContactNumberError] = useState(false);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    setFirstNameError(false);
+    setLastNameError(false);
+    setEmailError(false);
+    setPasswordError(false);
+    setContactNumberError(false);
+
+    if (firstName === "") {
+      setFirstName(true);
+    }
+    if (lastName === "") {
+      setLastName(true);
+    }
+    if (email === "") {
+      setEmailError(true);
+    }
+    if (password === "") {
+      setPasswordError(true);
+    }
+    if (contactNumber === "") {
+      setContactNumberError(true);
+    }
+
+    if (firstName && lastName && email && password && contactNumber) {
+      axios
+        .post("http://localhost:8080/api/auth/signup", {
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password,
+          contactNumber: contactNumber,
+        })
+        .then(function (response) {
+          SuccessToast(response.data.message);
+          navigate("/login");
+        })
+        .catch(function (error) {
+          ErrorToast(
+            "Error: There was an issue in registering the user, please try again later."
+          );
+        });
+    }
+  };
+
   return (
     <>
-    <form>
-    <Grid container direction="column" justifyContent="center" alignItems="center" style={{ minHeight: '100vh' }} spacing={2}>
-  <Grid item>
-  <Avatar sx={{ bgcolor: pink[500], color:'white' }}> 
-  <LockIcon  />
-  </Avatar>
-  </Grid>
+      <NavigationBar />
+      <div className="signupContainer">
+        <form autoComplete="off" onSubmit={handleSubmit}>
+          <Avatar className="avatarStyle">
+            <LockIcon />
+          </Avatar>
+          <Typography gutterBottom variant="h5" component="p">
+            Sign up
+          </Typography>
+          <MuiTextSignup
+            label="First Name"
+            onChange={(e) => setFirstName(e.target.value)}
+            value={firstName}
+            error={firstNameError}
+            type="text"
+          />
+          <MuiTextSignup
+            label="Last Name"
+            onChange={(e) => setLastName(e.target.value)}
+            value={lastName}
+            error={lastNameError}
+            type="text"
+          />
+          <MuiTextSignup
+            label="Email Address"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            error={emailError}
+            type="email"
+          />
+          <MuiTextSignup
+            label="Password"
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            error={passwordError}
+            type="password"
+          />
+          <MuiTextSignup
+            label="Confirm Password"
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            value={confirmPassword}
+            error={password.length > 0 && confirmPassword !== password}
+            type="password"
+          />
+          <MuiTextSignup
+            label="Contact Number"
+            onChange={(e) => setContactNumber(e.target.value)}
+            value={contactNumber}
+            error={contactNumberError}
+            type="tel"
+          />
+          <MuiButtonSubmitButton
+            disabled={password.length > 0 && confirmPassword !== password}
+            value="Sign Up"
+          />
 
-  <Grid item>
-  <h3 >Sign Up</h3>
-  </Grid>
-
-  <Grid item>
-  <TextField type='text' variant="outlined" sx={{ width: 400 }} label="First Name*"/>
-  </Grid>
-
-  <Grid item>
-  <TextField type='text'  variant="outlined" sx={{ width: 400 }} label="Last Name*"/>
-  </Grid>
-
-  <Grid item>
-  <TextField type='email' variant="outlined" sx={{ width: 400 }}  label="Email Address*"/>
-  </Grid>
-
-  <Grid item>
-  <TextField type='password'  variant="outlined" sx={{ width: 400 }} label="Password*"/>
-  </Grid>
-
-  <Grid item>
-  <TextField type='password'  variant="outlined" sx={{ width: 400 }} label="Confirm Password*"/>
-  </Grid>
-
-  <Grid item>
-  <TextField type='text' variant="outlined" sx={{ width: 400 }}  label="Contact Number*"/>
-  </Grid>
-
-  <Grid item>
-  <Button type="submit" variant="contained" sx={{ width: 400, backgroundColor:'#3f51b5' }}>Sign Up</Button>
-  </Grid>
-  <Grid item sx={{ textAlign: 'right', width: 400 }}>
-          <Link to="/login">
-            <span>Already have an account? Sign in</span>
-          </Link>
-        </Grid></Grid>
-
-    </form>
-      
+          <div className="loginLink">
+            <Link to="/login">Already have an account? Sign in</Link>
+          </div>
+        </form>
+      </div>
+      <div className="signupFooter">
+        Copyright &copy; <Link href="https://www.upgrad.com/">upGrad</Link> 2023
+      </div>
     </>
-  )
+  );
 }
 
-export default SignUp;
+export default Signup;
