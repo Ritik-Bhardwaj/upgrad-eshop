@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import { Grid } from "@mui/material";
 import SearchInput from "../../components/search/Search";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../../common/Auth/AuthContext";
+import { AuthContext } from "../../common/authContext/AuthContext";
 import React from "react";
 
 //MUI Components

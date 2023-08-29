@@ -14,7 +14,7 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import NavigationBar from "../../common/NavBar/NavBar";
 
-import "./Orders.css";
+import "./Order.css";
 
 //Toasts
 import { SuccessToast, ErrorToast } from "../../common/Toasts/Toasts";

@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material";
 import { AuthContextProvider } from "./common/authContext/AuthContext";
 import ProductDetail from "./components/ProductDetails/ProductDetails";
-import Products from "./components/ProductsPage/Products";
+import Products from "./components/Products/Products";
 import LogIn from "./components/SignIn/SignIn";
 import SignUp from "../src/components/SignUp/SignUp";
 import AddModifyProduct from "./components/addProduct/AddModifyProduct";
@@ -27,7 +27,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/edit-product/:id" element={<AddModifyProduct />} />
-            <Route path="/add-product" element={<AddEditProduct />} />
+            <Route path="/add-product" element={<AddModifyProduct />} />
             <Route path="/login" element={<LogIn />} />
             <Route path="/products/:id" element={<ProductDetail />} />
             <Route exact path="/products" element={<Products />} />
