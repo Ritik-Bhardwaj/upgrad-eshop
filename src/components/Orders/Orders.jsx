@@ -17,6 +17,8 @@ import NavigationBar from "../../common/NavBar/NavBar";
 import "./Order.css";
 
 //Toasts
+import 'react-toastify/dist/ReactToastify.css';
+
 import { SuccessToast, ErrorToast } from "../../common/Toasts/Toasts";
 
 const OrderConfirmation = () => {
@@ -157,7 +159,8 @@ function Orders() {
   const handleCurrentAddress = (add) => setCurrentAddress(add);
 
   useEffect(() => {
-    if (authToken !== null) {
+    // if (authToken !== null) {
+    if (localStorage.getItem('token') !== null) {
       axios
         .get(`http://localhost:8080/api/addresses`, {
           headers: {
@@ -237,11 +240,13 @@ function Orders() {
                   className="basic-single"
                   classNamePrefix="select"
                   name="address"
-                  getOptionLabel={(item) => item.name}
+                  getOptionLabel={(item) => `${item.city} --- > ${item.landmark}, ${item.street}, ${item.state}, ${item.zipcode} `}
                   getOptionValue={(item) => item.id}
                   options={addressList}
                   onChange={(data) => handleCurrentAddress(data)}
                 />
+
+
                 <p className="orSeparator">--OR--</p>
                 <div className="center">
                   <Typography gutterBottom variant="h6" component="div">

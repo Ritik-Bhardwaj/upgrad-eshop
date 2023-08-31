@@ -71,6 +71,9 @@ function Signup() {
           ErrorToast(
             "Error: There was an issue in registering the user, please try again later."
           );
+          alert(
+            "Error: There was an issue in registering the user, please try again later."
+          );
         });
     }
   };

@@ -68,6 +68,7 @@ function LogIn() {
         })
         .catch(() => {
           ErrorToast("Invalid Credentials");
+          alert("Invalid Credentials");
         });
     }
   };

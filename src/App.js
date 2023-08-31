@@ -8,7 +8,7 @@ import LogIn from "./components/SignIn/SignIn";
 import SignUp from "../src/components/SignUp/SignUp";
 import AddModifyProduct from "./components/addProduct/AddModifyProduct";
 import Orders from "../src/components/Orders/Orders";
-
+import 'react-toastify/dist/ReactToastify.css';
 const appTheme = createTheme({
   palette: {
     primary: {

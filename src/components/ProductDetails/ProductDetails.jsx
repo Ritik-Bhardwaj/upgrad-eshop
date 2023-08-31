@@ -28,7 +28,8 @@ function ProductDetail() {
   const [categoryList, setCategoryList] = useState([]);
 
   useEffect(() => {
-    if (authToken !== null) {
+    // if (authToken !== null) {
+    if (localStorage.getItem('token') !== null) {
       axios
         .get("http://localhost:8080/api/products/categories", {
           headers: {
@@ -67,24 +68,7 @@ function ProductDetail() {
       <NavigationBar isLogged={authToken !== null} isAdmin={isAdmin} />
       {product ? (
         <Fragment>
-          <div className="categorySection">
-            <ToggleButtonGroup
-              color="primary"
-              value={product.category}
-              exclusive
-              disabled
-              aria-label="Category"
-            >
-              <ToggleButton key="all" value="all">
-                ALL
-              </ToggleButton>
-              {categoryList.map((category) => (
-                <ToggleButton key={category} value={category}>
-                  {category.toUpperCase()}
-                </ToggleButton>
-              ))}
-            </ToggleButtonGroup>
-          </div>
+          
           <div className="detailContainer">
             <div className="child-divs">
               <img

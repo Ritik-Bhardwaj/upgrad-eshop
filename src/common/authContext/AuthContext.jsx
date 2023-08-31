@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 
 export const AuthContext = createContext();
 
@@ -6,12 +6,34 @@ export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
   const [authToken, setAuthToken] = useState(null);
-  const [userId, setUserId] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [userId, setUserIds] = useState(null);
+  const [isAdmin, setIsAdmins] = useState(false);
 
   const setToken = (token) => {
+    localStorage.setItem("token", token);
     setAuthToken(token);
   };
+  const setUserId =(id)=>{
+    console.log('userid  ---- ',id)
+    localStorage.setItem("userID", id);
+    setUserIds(id)
+  }
+  const setIsAdmin = (i)=>{
+    console.log('setIsAdmin ---- ',i)
+    localStorage.setItem("isAdmin", i);
+    setIsAdmins(i)
+  }
+
+  useEffect(()=>{
+    const tokens  = localStorage.getItem('token')
+    if(tokens.length > 0){
+      setAuthToken(tokens)
+      setUserIds(localStorage.getItem('userID'))
+      setIsAdmins(localStorage.getItem('isAdmin'))
+    }
+  },[])
+
+  console.log('userId ---- ',userId , isAdmin , authToken)
 
   return (
     <AuthContext.Provider

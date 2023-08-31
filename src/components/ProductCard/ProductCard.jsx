@@ -42,7 +42,7 @@ function ProductCard(props) {
     <Grid key={key} item xs={4}>
       <Card>
         <CardMedia
-          sx={{ height: 150 }}
+          sx={{ height: 150, backgroundSize: "contain" }}
           image={
             productData.imageUrl.length > 0
               ? productData.imageUrl
@@ -50,7 +50,7 @@ function ProductCard(props) {
           }
           title={productData.name}
         />
-        <CardContent sx={{ height: 150 }}>
+        <CardContent sx={{ height: 150, fontSize:'1.1rem' }}>
           <div className=".card-content">
             <Typography gutterBottom variant="h5" component="div">
               {productData.name}

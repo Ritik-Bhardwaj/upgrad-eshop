@@ -7,6 +7,8 @@ import { Box, CircularProgress, TextField, Typography } from "@mui/material";
 import NavigationBar from "../../common/NavBar/NavBar";
 
 //Toasts
+import 'react-toastify/dist/ReactToastify.css';
+
 import { SuccessToast, ErrorToast } from "../../common/Toasts/Toasts";
 
 //MUI Components
@@ -48,8 +50,8 @@ function AddModifyProduct() {
       .catch(function () {
         ErrorToast("Error: There was an issue in retrieving categories list.");
       });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    
+  }, [authToken]); // add authToken as dependency
 
   useEffect(() => {
     if (isEditMode) {

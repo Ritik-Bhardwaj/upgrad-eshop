@@ -32,7 +32,8 @@ function Products() {
   const [categoryList, setCategoryList] = useState([]);
 
   const triggerDataFetch = () => {
-    if (authToken !== null) {
+    // if (authToken !== null) {
+    if (localStorage.getItem('token') !== null) {
       axios
         .get("http://localhost:8080/api/products/categories", {
           headers: {
@@ -68,6 +69,7 @@ function Products() {
   useEffect(() => {
     triggerDataFetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, []);
 
   const handleCategoryChange = (event, newCategory) => {
@@ -160,6 +162,7 @@ function Products() {
                 <MenuItem value={"default"}>Default</MenuItem>
                 <MenuItem value={"htl"}>Price: High to Low</MenuItem>
                 <MenuItem value={"lth"}>Price: Low to High</MenuItem>
+                <MenuItem value={"nth"}>New Item</MenuItem>
               </Select>
             </FormControl>
           </div>
