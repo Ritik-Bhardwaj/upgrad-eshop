@@ -15,9 +15,10 @@ import NavigationBar from "../../common/NavBar/NavBar";
 import MuiButtonPlaceOrder from "../../common/MuiComponents/Buttons/MuiButtonPlaceOrder";
 
 //Toasts
-import { ErrorToast } from "../../common/Toasts/Toasts";
+import { ErrorToast, SuccessToast } from "../../common/Toasts/Toasts";
 
 import "./ProductDetails.css";
+import { ToastContainer } from "react-toastify";
 
 function ProductDetail() {
   const { authToken, isAdmin } = useContext(AuthContext);
@@ -29,7 +30,7 @@ function ProductDetail() {
 
   useEffect(() => {
     // if (authToken !== null) {
-    if (localStorage.getItem('token') !== null) {
+    if (localStorage.getItem('token')  !== null) {
       axios
         .get("http://localhost:8080/api/products/categories", {
           headers: {
@@ -131,6 +132,7 @@ function ProductDetail() {
                 disabled={!(quantity >= 1)}
               />
             </div>
+            <ToastContainer/>
           </div>
         </Fragment>
       ) : null}

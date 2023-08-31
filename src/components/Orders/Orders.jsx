@@ -20,6 +20,7 @@ import "./Order.css";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { SuccessToast, ErrorToast } from "../../common/Toasts/Toasts";
+import { ToastContainer } from "react-toastify";
 
 const OrderConfirmation = () => {
   setTimeout(() => {
@@ -386,6 +387,7 @@ function Orders() {
           </Box>
         </Fragment>
       </Box>
+      <ToastContainer/>
     </div>
   ) : (
     <Navigate to="/products" />

@@ -13,8 +13,8 @@ import { SuccessToast, ErrorToast } from "../../common/Toasts/Toasts";
 
 //MUI Components
 import MuiButtonSubmitButton from "../../common/MuiComponents/Buttons/MuiButtonSubmitButton";
-
 import "./AddModifyProduct.css";
+import { ToastContainer } from "react-toastify";
 
 function AddModifyProduct() {
   const { authToken, isAdmin } = useContext(AuthContext);
@@ -48,6 +48,8 @@ function AddModifyProduct() {
         setCategoryList(response.data);
       })
       .catch(function () {
+        alert("Error: There was an issue in retrieving categories list.");
+
         ErrorToast("Error: There was an issue in retrieving categories list.");
       });
     
@@ -150,11 +152,15 @@ function AddModifyProduct() {
             }
           )
           .then(function () {
+            console.log("Add product--------------------------")
             SuccessToast(`Product ${name} added successfully!`);
+            alert(`Product ${name} added successfully!`);
             navigate("/products");
           })
           .catch(function () {
+            console.log("Error product--------------------------")
             ErrorToast(`Error: There was an issue in adding product: ${name}.`);
+            alert(`Error: There was an issue in adding product: ${name}.`);
           });
       }
     }
@@ -260,6 +266,7 @@ function AddModifyProduct() {
           </form>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 }

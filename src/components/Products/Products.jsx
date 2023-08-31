@@ -17,9 +17,10 @@ import { AuthContext } from "../../common/authContext/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 //Toasts
-import { ErrorToast } from "../../common/Toasts/Toasts";
+import { ErrorToast, SuccessToast } from "../../common/Toasts/Toasts";
 
 import "./Products.css";
+import { ToastContainer } from "react-toastify";
 
 function Products() {
   const { authToken, isAdmin } = useContext(AuthContext);
@@ -68,7 +69,6 @@ function Products() {
 
   useEffect(() => {
     triggerDataFetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     
   }, []);
 
@@ -104,7 +104,7 @@ function Products() {
     setSearchTerm(event.target.value);
   };
 
-  const handleDeleteCall = (id) => {
+  const handleDeleteCall = (id,name) => {
     axios
       .delete(`http://localhost:8080/api/products/${id}`, {
         headers: {
@@ -112,6 +112,7 @@ function Products() {
         },
       })
       .then(function () {
+        SuccessToast(`Product ${name} successfully deleted`);
         triggerDataFetch();
       })
       .catch(function (error) {
@@ -172,11 +173,12 @@ function Products() {
                 key={item.id}
                 productData={item}
                 isAdmin={isAdmin}
-                handleDeleteCall={() => handleDeleteCall(item.id)}
+                handleDeleteCall={() => handleDeleteCall(item.id,item.name)}
                 navigate={navigate}
               />
             ))}
           </Grid>
+          <ToastContainer />
         </div>
       ) : (
         <Typography gutterBottom variant="body1" component="p">
@@ -184,6 +186,7 @@ function Products() {
         </Typography>
       )}
     </Fragment>
+    
   );
 }
 

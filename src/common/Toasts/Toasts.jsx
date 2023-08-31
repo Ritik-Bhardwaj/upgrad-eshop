@@ -15,6 +15,7 @@ export function ErrorToast(message) {
 }
 
 export function SuccessToast(message) {
+  console.log("Sucess---------------------------")
   toast.success(message, {
     position: "top-right",
     autoClose: 3000,

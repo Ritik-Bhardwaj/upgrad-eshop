@@ -9,6 +9,7 @@ import SignUp from "../src/components/SignUp/SignUp";
 import AddModifyProduct from "./components/addProduct/AddModifyProduct";
 import Orders from "../src/components/Orders/Orders";
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
 const appTheme = createTheme({
   palette: {
     primary: {
@@ -37,6 +38,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
+      <ToastContainer/>
     </AuthContextProvider>
   );
 }
