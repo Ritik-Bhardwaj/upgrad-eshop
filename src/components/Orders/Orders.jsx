@@ -176,7 +176,8 @@ function Orders() {
   }, [authToken]);
 
   const renderProductDetails = () => (
-    <div className="productDetails">
+    <div className="productDetails check ">
+       
       <Typography gutterBottom variant="h5" component="p">
         {state.name}
       </Typography>
@@ -235,6 +236,7 @@ function Orders() {
             </div>
           ) : activeStep === 1 ? (
             <div className="stepContainer2">
+           
               <form>
                 <label>Select Address:</label>
                 <Select
@@ -344,6 +346,7 @@ function Orders() {
             <div className="stepContainer3">
               {renderProductDetails()}
               <div>
+             
                 <Typography gutterBottom variant="h5" component="p">
                   Address Details:
                 </Typography>

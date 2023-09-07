@@ -60,6 +60,8 @@ function LogIn() {
             //set the role to admin if the roles contain ADMIN, setAdmin using authContext
             if (user.roles[0] === "ADMIN") {
               setIsAdmin(true);
+            }else{
+              setIsAdmin(false)
             }
             //set the userID using authContext
             setUserId(user.id);

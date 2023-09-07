@@ -33,7 +33,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   },[])
 
-  console.log('userId ---- ',userId , isAdmin , authToken)
+  console.log('userId isAdmin token---- ',userId , isAdmin , authToken)
 
   return (
     <AuthContext.Provider
